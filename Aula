@@ -1,0 +1,50 @@
+int fatorial(int x){
+    int aux=0;
+    int mul = x-1;
+    while (mul != 0){
+        aux = x * mul;
+        x = aux;
+        mul--;
+    }
+    return aux;
+}
+
+
+
+
+int numOfWays(int* nums, int numsSize) {
+    if (numsSize == 0 || numsSize < 0 ) return 0;
+    if (numsSize == 1) return 1;
+
+    int root = nums[0];
+    int resposta = 0;
+    int maior[100],menor[100];
+    int n=0;
+    int p=0;
+
+    for(int c=1; c<numsSize; c++){
+        if( nums[c] > root){
+            maior[n] = nums[c];
+            n++;
+        }
+        if( nums[c] < root){
+            menor[p] = nums[c];
+            p++;
+        }
+    }    
+
+    int somaEsq = numOfWays( menor, p);
+    int somaDir = numOfWays( maior, n);
+
+    int total = p+n - 1;
+    int esquerda = fatorial(p);
+
+    total = fatorial(total);
+
+    int div = fatorial(numsSize-1-p);
+
+    return (total/div) -1 ;
+
+    return somaEsq * somaDir;
+
+}
