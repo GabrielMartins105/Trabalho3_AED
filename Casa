@@ -1,0 +1,44 @@
+#define MOD 1000000007
+
+long long fatorial(int x){
+    long long resultado = 1;
+    for (int i = 2; i <= x; i++) {
+        resultado = (resultado * i) % MOD;
+    }
+    return resultado;
+}
+
+
+long long comb(int n, int k) {
+    if (k == 0 || k == n) return 1;
+
+    long long res = 1;
+    for (int i = 1; i <= k; i++) {
+        res = res * (n - i + 1) / i;
+    }
+    return res % MOD;  
+}
+
+int numOfWays(int* nums, int numsSize) {
+    if (numsSize <= 2) return 1;
+
+    int root = nums[0];
+    int maior[1001], menor[1001];
+    int n = 0, p = 0;
+
+    for (int c = 1; c < numsSize; c++) {
+        if (nums[c] > root) {
+            maior[n++] = nums[c];
+        }
+        if (nums[c] < root) {
+            menor[p++] = nums[c];
+        }
+    }
+
+    long long somaEsq = numOfWays(menor, p);
+    long long somaDir = numOfWays(maior, n);
+    long long combi = comb(p + n, p);
+    long long total = ((combi * somaEsq) % MOD * somaDir) % MOD;
+
+    return ((total - 1 + MOD) % MOD);
+}
