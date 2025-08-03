@@ -14,7 +14,7 @@ Given an array nums that represents a permutation of integers from 1 to n. We ar
 
 
 <h2 align="center">
-  <img src = "[https://i.imgur.com/a5ZpSjv.png]" />
+  <img src = "https://i.imgur.com/a5ZpSjv.png" />
 </h2>
 
 <h3 allign = "left">
